@@ -1,0 +1,41 @@
+package com.advanced.springstudy.trace.threadlocal;
+
+import com.advanced.springstudy.trace.threadlocal.code.FieldService;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+
+@Slf4j
+public class FieldServiceTest {
+  private FieldService fieldService = new FieldService();
+
+  @Test
+  void setFieldService() {
+    log.info("main start");
+    Runnable userA = () -> {
+      fieldService.logic("userA");
+    };
+    Runnable userB = () -> {
+      fieldService.logic("userB");
+    };
+
+    Thread threadA = new Thread(userA);
+    threadA.setName("thread-A");
+    Thread threadB = new Thread(userB);
+    threadB.setName("thread-B");
+
+    threadA.start();
+//    sleep(2000); // 동시성 X
+    threadB.start();
+
+    sleep(3000); // 메인 쓰레드 종료 대기
+    log.info("main exit");
+  }
+
+  private void sleep(int m) {
+    try {
+      Thread.sleep(m);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+}
