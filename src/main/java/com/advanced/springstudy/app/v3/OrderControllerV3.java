@@ -1,4 +1,4 @@
-package com.advanced.springstudy.v3;
+package com.advanced.springstudy.app.v3;
 
 import com.advanced.springstudy.trace.TraceStatus;
 import com.advanced.springstudy.trace.logtrace.LogTrace;

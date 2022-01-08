@@ -1,4 +1,4 @@
-package com.advanced.springstudy.v0;
+package com.advanced.springstudy.app.v0;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
