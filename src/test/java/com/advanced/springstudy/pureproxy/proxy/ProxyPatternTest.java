@@ -1,0 +1,27 @@
+package com.advanced.springstudy.pureproxy.proxy;
+
+import com.advanced.springstudy.pureproxy.proxy.code.CacheProxy;
+import com.advanced.springstudy.pureproxy.proxy.code.ProxyPatternClient;
+import com.advanced.springstudy.pureproxy.proxy.code.RealSubject;
+import org.junit.jupiter.api.Test;
+
+public class ProxyPatternTest {
+  @Test
+  void noProxyTest() {
+    RealSubject subject = new RealSubject();
+    ProxyPatternClient client = new ProxyPatternClient(subject);
+    client.execute();
+    client.execute();
+    client.execute();
+  }
+
+  @Test
+  void cacheProxyTest() {
+    RealSubject subject = new RealSubject();
+    CacheProxy cacheProxy = new CacheProxy(subject);
+    ProxyPatternClient client = new ProxyPatternClient(cacheProxy);
+    client.execute();
+    client.execute();
+    client.execute();
+  }
+}
