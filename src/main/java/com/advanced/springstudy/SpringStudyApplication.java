@@ -2,6 +2,7 @@ package com.advanced.springstudy;
 
 import com.advanced.springstudy.config.AppV1Config;
 import com.advanced.springstudy.config.AppV2Config;
+import com.advanced.springstudy.config.v1_proxy.ConcreteProxyConfig;
 import com.advanced.springstudy.config.v1_proxy.InterfaceProxyConfig;
 import com.advanced.springstudy.trace.logtrace.LogTrace;
 import com.advanced.springstudy.trace.logtrace.ThreadLocalFieldLogTrace;
@@ -11,7 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
 //@Import({AppV1Config.class, AppV2Config.class})
-@Import(InterfaceProxyConfig.class)
+//@Import(InterfaceProxyConfig.class)
+@Import(ConcreteProxyConfig.class)
 @SpringBootApplication(scanBasePackages = "com.advanced.springstudy.proxyapp")
 public class SpringStudyApplication {
 
