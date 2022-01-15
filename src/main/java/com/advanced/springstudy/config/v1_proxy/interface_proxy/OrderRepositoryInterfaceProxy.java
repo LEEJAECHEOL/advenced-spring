@@ -1,13 +1,13 @@
 package com.advanced.springstudy.config.v1_proxy.interface_proxy;
 
-import com.advanced.springstudy.proxyapp.v1.ProxyOrderRepository;
+import com.advanced.springstudy.proxyapp.v1.ProxyOrderRepositoryV1;
 import com.advanced.springstudy.trace.TraceStatus;
 import com.advanced.springstudy.trace.logtrace.LogTrace;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class OrderRepositoryInterfaceProxy implements ProxyOrderRepository {
-  private final ProxyOrderRepository target;
+public class OrderRepositoryInterfaceProxy implements ProxyOrderRepositoryV1 {
+  private final ProxyOrderRepositoryV1 target;
   private final LogTrace trace;
 
   @Override

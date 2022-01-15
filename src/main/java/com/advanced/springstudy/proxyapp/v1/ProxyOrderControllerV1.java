@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 // 스프링은 @Controller 또는 @RequestMapping 이 있어야 스프링컨트롤러로 인식할 수 있음.
 @RequestMapping
 @ResponseBody
-public interface ProxyOrderController {
+public interface ProxyOrderControllerV1 {
   @GetMapping("/v1/proxy/request")
   String request(@RequestParam("itemId") String itemId);
 

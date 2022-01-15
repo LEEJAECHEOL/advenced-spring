@@ -14,33 +14,33 @@ public class DynamicProxyFilterConfig {
   private static final String[] PATTERNS = {"request*", "order*", "save*"};
 
   @Bean
-  public ProxyOrderController proxyOrderController(LogTrace trace) {
-    ProxyOrderController proxyOrderController = new ProxyOrderControllerImpl(proxyOrderService(trace));
+  public ProxyOrderControllerV1 proxyOrderController(LogTrace trace) {
+    ProxyOrderControllerV1 proxyOrderControllerV1 = new ProxyOrderControllerV1Impl(proxyOrderService(trace));
 
-    return (ProxyOrderController) Proxy.newProxyInstance(
-      ProxyOrderController.class.getClassLoader(),
-      new Class[]{ProxyOrderController.class},
-      new LogTraceFilterHandler(proxyOrderController, trace, PATTERNS)
+    return (ProxyOrderControllerV1) Proxy.newProxyInstance(
+      ProxyOrderControllerV1.class.getClassLoader(),
+      new Class[]{ProxyOrderControllerV1.class},
+      new LogTraceFilterHandler(proxyOrderControllerV1, trace, PATTERNS)
     );
   }
 
   @Bean
-  public ProxyOrderService proxyOrderService(LogTrace trace) {
-    ProxyOrderService orderService = new ProxyOrderServiceImpl(proxyOrderRepository(trace));
+  public ProxyOrderServiceV1 proxyOrderService(LogTrace trace) {
+    ProxyOrderServiceV1 orderService = new ProxyOrderServiceV1Impl(proxyOrderRepository(trace));
 
-    return (ProxyOrderService) Proxy.newProxyInstance(
-      ProxyOrderService.class.getClassLoader(),
-      new Class[]{ProxyOrderService.class},
+    return (ProxyOrderServiceV1) Proxy.newProxyInstance(
+      ProxyOrderServiceV1.class.getClassLoader(),
+      new Class[]{ProxyOrderServiceV1.class},
       new LogTraceFilterHandler(orderService, trace, PATTERNS));
   }
 
   @Bean
-  public ProxyOrderRepository proxyOrderRepository(LogTrace trace) {
-    ProxyOrderRepository orderRepository = new ProxyOrderRepositoryImpl();
+  public ProxyOrderRepositoryV1 proxyOrderRepository(LogTrace trace) {
+    ProxyOrderRepositoryV1 orderRepository = new ProxyOrderRepositoryV1Impl();
 
-    return (ProxyOrderRepository) Proxy.newProxyInstance(
-      ProxyOrderRepository.class.getClassLoader(),
-      new Class[]{ProxyOrderRepository.class},
+    return (ProxyOrderRepositoryV1) Proxy.newProxyInstance(
+      ProxyOrderRepositoryV1.class.getClassLoader(),
+      new Class[]{ProxyOrderRepositoryV1.class},
       new LogTraceFilterHandler(orderRepository, trace, PATTERNS));
   }
 }

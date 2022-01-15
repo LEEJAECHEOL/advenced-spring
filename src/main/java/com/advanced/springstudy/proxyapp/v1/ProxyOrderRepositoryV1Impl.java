@@ -1,6 +1,6 @@
 package com.advanced.springstudy.proxyapp.v1;
 
-public class ProxyOrderRepositoryImpl implements ProxyOrderRepository {
+public class ProxyOrderRepositoryV1Impl implements ProxyOrderRepositoryV1 {
   @Override
   public void save(String itemId) {
     if (itemId.equals("ex")) {

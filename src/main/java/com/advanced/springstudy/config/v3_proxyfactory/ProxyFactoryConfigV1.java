@@ -15,37 +15,37 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ProxyFactoryConfigV1 {
   @Bean
-  public ProxyOrderController orderController(LogTrace trace){
-    ProxyOrderController orderController = new ProxyOrderControllerImpl(orderService(trace));
+  public ProxyOrderControllerV1 orderController(LogTrace trace){
+    ProxyOrderControllerV1 orderController = new ProxyOrderControllerV1Impl(orderService(trace));
 
     ProxyFactory factory = new ProxyFactory(orderController);
     factory.addAdvisor(getAdvisor(trace));
-    ProxyOrderController proxy = (ProxyOrderController) factory.getProxy();
+    ProxyOrderControllerV1 proxy = (ProxyOrderControllerV1) factory.getProxy();
     log.info("ProxyFactory proxy = {}, target = {}", proxy.getClass(), orderController.getClass());
     return proxy;
 
   }
 
   @Bean
-  public ProxyOrderService orderService(LogTrace trace){
-    ProxyOrderService orderService = new ProxyOrderServiceImpl(orderRepository(trace));
+  public ProxyOrderServiceV1 orderService(LogTrace trace){
+    ProxyOrderServiceV1 orderService = new ProxyOrderServiceV1Impl(orderRepository(trace));
 
     ProxyFactory factory = new ProxyFactory(orderService);
     factory.addAdvisor(getAdvisor(trace));
-    ProxyOrderService proxy = (ProxyOrderService) factory.getProxy();
+    ProxyOrderServiceV1 proxy = (ProxyOrderServiceV1) factory.getProxy();
     log.info("ProxyFactory proxy = {}, target = {}", proxy.getClass(), orderService.getClass());
     return proxy;
 
   }
 
   @Bean
-  public ProxyOrderRepository orderRepository(LogTrace trace){
-    ProxyOrderRepositoryImpl orderRepository = new ProxyOrderRepositoryImpl();
+  public ProxyOrderRepositoryV1 orderRepository(LogTrace trace){
+    ProxyOrderRepositoryV1Impl orderRepository = new ProxyOrderRepositoryV1Impl();
 
     ProxyFactory factory = new ProxyFactory(orderRepository);
     factory.addAdvisor(getAdvisor(trace));
 
-    ProxyOrderRepository proxy = (ProxyOrderRepository) factory.getProxy();
+    ProxyOrderRepositoryV1 proxy = (ProxyOrderRepositoryV1) factory.getProxy();
     log.info("ProxyFactory proxy = {}, target = {}", proxy.getClass(), orderRepository.getClass());
 
     return proxy;

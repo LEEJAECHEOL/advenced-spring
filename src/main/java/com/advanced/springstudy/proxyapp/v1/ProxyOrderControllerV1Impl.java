@@ -1,9 +1,9 @@
 package com.advanced.springstudy.proxyapp.v1;
 
-public class ProxyOrderControllerImpl implements ProxyOrderController {
-  private final ProxyOrderService orderService;
+public class ProxyOrderControllerV1Impl implements ProxyOrderControllerV1 {
+  private final ProxyOrderServiceV1 orderService;
 
-  public ProxyOrderControllerImpl(ProxyOrderService orderService) {
+  public ProxyOrderControllerV1Impl(ProxyOrderServiceV1 orderService) {
     this.orderService = orderService;
   }
 

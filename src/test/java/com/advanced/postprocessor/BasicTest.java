@@ -1,0 +1,46 @@
+package com.advanced.postprocessor;
+
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.boot.web.reactive.context.AnnotationConfigReactiveWebApplicationContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+
+@Slf4j
+public class BasicTest {
+  @Test
+  void basicConfig() {
+    ApplicationContext context = new AnnotationConfigReactiveWebApplicationContext(BasicConfig.class);
+
+    A beanA = context.getBean("beanA", A.class);
+    beanA.helloA();
+
+
+    Assertions.assertThrows(NoSuchBeanDefinitionException.class, () -> context.getBean(B.class));
+
+  }
+
+  @Slf4j
+  static class BasicConfig {
+    @Bean(name = "beanA")
+    public A a() {
+      return new A();
+    }
+  }
+
+  @Slf4j
+  static class A {
+    public void helloA() {
+      log.info("hello A");
+    }
+  }
+
+  @Slf4j
+  static class B {
+    public void helloB() {
+      log.info("hello B");
+    }
+  }
+}
