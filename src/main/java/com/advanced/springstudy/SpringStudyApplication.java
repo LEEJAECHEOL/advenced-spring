@@ -9,6 +9,7 @@ import com.advanced.springstudy.config.v2_dynamicproxy.DynamicProxyFilterConfig;
 import com.advanced.springstudy.config.v3_proxyfactory.ProxyFactoryConfigV1;
 import com.advanced.springstudy.config.v3_proxyfactory.ProxyFactoryConfigV2;
 import com.advanced.springstudy.config.v4_postprocessor.BeanPostProcessorConfig;
+import com.advanced.springstudy.config.v5_autoproxy.AutoProxyConfig;
 import com.advanced.springstudy.trace.logtrace.LogTrace;
 import com.advanced.springstudy.trace.logtrace.ThreadLocalFieldLogTrace;
 import org.springframework.boot.SpringApplication;
@@ -23,7 +24,7 @@ import org.springframework.context.annotation.Import;
 //@Import(DynamicProxyFilterConfig.class)
 //@Import(ProxyFactoryConfigV1.class)
 //@Import(ProxyFactoryConfigV2.class)
-@Import(BeanPostProcessorConfig.class)
+@Import(AutoProxyConfig.class)
 @SpringBootApplication(scanBasePackages = "com.advanced.springstudy.proxyapp")
 public class SpringStudyApplication {
 
